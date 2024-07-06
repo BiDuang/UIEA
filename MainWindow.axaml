@@ -1,0 +1,51 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:UIEA.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+        xmlns:models="clr-namespace:UIEA.Models"
+        xmlns:fluent="clr-namespace:FluentIcons.Avalonia.Fluent;assembly=FluentIcons.Avalonia.Fluent"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="UIEA.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        DataContext="{Binding MainWindow,Source={StaticResource Locator}}"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="UIEA"
+        x:CompileBindings="False"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <ThemeVariantScope RequestedThemeVariant="">
+        <Panel>
+            <ExperimentalAcrylicBorder IsHitTestVisible="False">
+                <ExperimentalAcrylicBorder.Material>
+                    <ExperimentalAcrylicMaterial
+                        BackgroundSource="Digger" TintColor="Black"
+                        TintOpacity="1" MaterialOpacity="0.65" />
+                </ExperimentalAcrylicBorder.Material>
+            </ExperimentalAcrylicBorder>
+
+            <ui:NavigationView x:Name="Navigation" IsBackEnabled="{Binding #Root.CanGoBack}" IsSettingsVisible="False"
+                               ItemInvoked="Navigation_OnItemInvoked">
+                <ui:NavigationView.MenuItemTemplate>
+                    <DataTemplate DataType="models:PageLink">
+                        <ui:NavigationViewItem Content="{Binding Key,Converter={StaticResource I18NConverter}}"
+                                               Tag="{Binding}">
+                            <ui:NavigationViewItem.IconSource>
+                                <fluent:SymbolIconSource Symbol="{Binding Icon}" />
+                            </ui:NavigationViewItem.IconSource>
+                        </ui:NavigationViewItem>
+                    </DataTemplate>
+                </ui:NavigationView.MenuItemTemplate>
+
+                <ui:Frame x:Name="Root" />
+            </ui:NavigationView>
+        </Panel>
+    </ThemeVariantScope>
+
+</Window>

@@ -1,0 +1,20 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="UIEA.App"
+             xmlns:local="using:UIEA"
+             xmlns:utils="using:UIEA.Utils"
+             xmlns:styling="clr-namespace:FluentAvalonia.Styling;assembly=FluentAvalonia"
+             RequestedThemeVariant="Default">
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+
+    <Application.Resources>
+        <local:ViewModelLocator x:Key="Locator" />
+        <utils:I18NConverter x:Key="I18NConverter" />
+    </Application.Resources>
+
+    <Application.Styles>
+        <styling:FluentAvaloniaTheme />
+        <FluentTheme />
+    </Application.Styles>
+</Application>
